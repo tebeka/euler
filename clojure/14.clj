@@ -24,9 +24,10 @@
 (defn collatz-length
   ([n] (collatz-length n 1))
   ([n len]
-   (if (= n 1)
-     len
-     (collatz-length (collatz-next n) (inc len)))))
+   (loop [n n len len]
+     (if (= n 1)
+       len
+       (recur (collatz-next n) (inc len))))))
 
 (def collatz-length (memoize collatz-length))
 
